@@ -9,8 +9,10 @@ class CounterGroup extends Component {
     
         this.state = {
             size: INIT_COUNTER_SIZE,
+            sum: 0,
         }
         this.onChange = this.onChange.bind(this);
+        this.onCalculate = this.onCalculate.bind(this);
     }
 
     initArray(size) {
@@ -22,18 +24,28 @@ class CounterGroup extends Component {
         this.setState({
             size: value.length > 0 ? parseInt(value): 0,
         });
+        this.state.sum = 0;
     }
+
+    onCalculate(difference) {
+        this.setState((prevState) => ({sum: prevState.sum + difference}));
+
+    }
+
 
     render() {
         let counters = this.initArray(this.state.size);
         return (
-            <div>
+            <div >
                 <form>
+                <span >Generate</span>
                     <input onChange={this.onChange} type="text" value={this.state.size}/>
+                Counters
+                <p >sum of all counters value is <span>{this.state.sum}</span></p>
                 </form>
                 {
-                    counters.map((value)=> 
-                         <Counter key ={value}/>
+                    counters.map((value,index)=> 
+                         <Counter key ={value} index={index} onCalculate={this.onCalculate}/>
                     )
                 }
             </div>

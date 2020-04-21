@@ -19,15 +19,21 @@ onIncrease(){
 onDecrease(){
     this.setState((prevState) => ({number: prevState.number-1}));
 }
+
+componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.state.number > prevState.number) {
+        this.props.onCalculate(1);
+    } else if (this.state.number < prevState.number) {
+        this.props.onCalculate(-1);
+    }
+}
     
 render(){
 	return(
 			<div>
-                
                 <button onClick={this.onIncrease}>+</button>
                 <span >{this.state.number}</span>
                 <button onClick={this.onDecrease }>-</button>
-			
 			</div>
 			);
 	}

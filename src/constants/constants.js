@@ -1,1 +1,1 @@
-export const INIT_COUNTER_SIZE = 2;
+export const INIT_COUNTER_SIZE = 0;
