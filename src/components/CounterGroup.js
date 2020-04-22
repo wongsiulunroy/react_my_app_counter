@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Counter from './Counter'
-import {INIT_COUNTER_SIZE} from '../constants/constants'
+import {INIT_COUNTER_SIZE,INIT_COUNTERS_SUM} from '../constants/constants'
+import CounterApi from '../apis/CounterApi'
+
 
 class CounterGroup extends Component {
     constructor(props) {
@@ -9,7 +11,7 @@ class CounterGroup extends Component {
     
         this.state = {
             size: INIT_COUNTER_SIZE,
-            sum: 0,
+            sum: INIT_COUNTERS_SUM,
         }
         this.onChange = this.onChange.bind(this);
         this.onCalculate = this.onCalculate.bind(this);
@@ -22,16 +24,26 @@ class CounterGroup extends Component {
     onChange(event) {
         const value = event.target.value;
         this.setState({
-            size: value.length > 0 ? parseInt(value): 0,
+            size: value.length > 0 ? parseInt(value): 0, sum :0,
         });
-        this.state.sum = 0;
+        CounterApi.putCounterSize({size:value}).then((response) => {
+            console.log(response)
+        });
+        
     }
 
     onCalculate(difference) {
         this.setState((prevState) => ({sum: prevState.sum + difference}));
-
     }
 
+    componentDidMount(){
+        CounterApi.getCounterSize().then((response)=> {
+            const size = response.data.size;
+            this.setState({size});
+        });
+        
+     }
+     
 
     render() {
         let counters = this.initArray(this.state.size);
