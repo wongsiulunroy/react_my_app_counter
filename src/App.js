@@ -1,13 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import CounterGroup from './components/CounterGroup';
+import ToDoContainer from './components/ToDoContainer';
+
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <CounterGroup />
+        <ToDoContainer />
         </header>
     </div>
   );
