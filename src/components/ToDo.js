@@ -11,7 +11,8 @@ import { Button, Space, Typography  } from 'antd';
         super(props)
     
         this.state = {
-            isStrikeThrough:false
+            isStrikeThrough:false,
+            display: true,
              
         }
         this.onClickDone = this.onClickDone.bind(this);
@@ -32,6 +33,7 @@ import { Button, Space, Typography  } from 'antd';
     onRemove() {
         const {todo, onDelete} = this.props;
         onDelete(todo.content);
+ 
 
     }
     
@@ -45,7 +47,6 @@ import { Button, Space, Typography  } from 'antd';
                  <p onClick ={this.onClickDone} style={{
                 textDecoration: this.state.isStrikeThrough ? 'line-through' : 'none',
               }}>{todo.content}
-                 
                  
                  </p>
                  <Button ghost onClick = {this.onRemove}>x </Button>

@@ -17,7 +17,7 @@ class ToDoContainer extends Component {
         this.onDelete = this.onDelete.bind(this);
         this.state = {
             toDoList: INIT_TODOS,
-            isStrikeThrough:true
+            
         }
     }
 
@@ -27,11 +27,7 @@ class ToDoContainer extends Component {
         })) 
         //console.log("helloooo")
         console.log(this.state.status);
-        this.setState((prevState) => {
-            return {
-              isStrikeThrough: !prevState.isStrikeThrough,
-            };
-          });
+        
     }
 
     onDelete(){
