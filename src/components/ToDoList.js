@@ -8,11 +8,11 @@ class ToDoList extends Component {
     }
 
     render() {
-        const {toDoList, onToggle} = this.props; 
+        const {toDoList, onToggle, onDelete} = this.props; 
         return (
             <div>
                 {toDoList.map((todo) => (
-                    <ToDo key={todo.id} todo={todo} onToggle={onToggle}/>
+                    <ToDo key={todo.id} todo={todo} onToggle={onToggle} onDelete={onDelete}/>
                 ))}
                 
             </div>

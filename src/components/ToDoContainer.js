@@ -14,8 +14,10 @@ class ToDoContainer extends Component {
         super(props)
 
         this.onToggle = this.onToggle.bind(this);
+        this.onDelete = this.onDelete.bind(this);
         this.state = {
             toDoList: INIT_TODOS,
+            isStrikeThrough:true
         }
     }
 
@@ -25,12 +27,24 @@ class ToDoContainer extends Component {
         })) 
         //console.log("helloooo")
         console.log(this.state.status);
+        this.setState((prevState) => {
+            return {
+              isStrikeThrough: !prevState.isStrikeThrough,
+            };
+          });
+    }
+
+    onDelete(){
+        this.setState((prevState)=> ({
+            content: " "
+        })) 
+        console.log(this.state.content);
     }
 
     render() {
         return (
             <div>
-                <ToDoList toDoList = {this.state.toDoList} onToggle = {this.onToggle}/>
+                <ToDoList toDoList = {this.state.toDoList} onToggle = {this.onToggle} onDelete={this.onDelete}/>
                 <input type="text"></input>
             </div>
         )
